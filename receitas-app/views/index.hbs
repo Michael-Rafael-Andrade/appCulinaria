@@ -1,2 +1,35 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<h1 class="mb-4">Sistema de Receitas</h1>
+
+{{#if receitas.length}}
+    
+    <div class="d-flex flex-wrap gap-3">
+        {{#each receitas}}
+            <div class="card mb-3" style="width: 18rem;"> 
+                
+                <div class="card-body">
+                    <h5 class="card-title">{{this.titulo}}</h5>
+                    <p class="card-text text-muted">
+                        Tempo de preparo: {{this.tempoDePreparo}} minutos.
+                    </p>
+                </div>
+
+                <div class="card-footer d-flex justify-content-between">
+                    <a href="/receitas/{{this.id}}" class="btn btn-sm btn-info text-white">
+                        Ver Detalhes
+                    </a>
+                    <a href="/receitas/{{this.id}}/alterar" class="btn btn-sm btn-warning">
+                        Alterar
+                    </a>
+                    <a href="/receitas/{{this.id}}/excluir" class="btn btn-sm btn-danger">
+                        Excluir
+                    </a>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+
+{{else}}
+    <div class="alert alert-info" role="alert">
+        Nenhuma receita cadastrada ainda. Utilize o menu "Nova Receita" para começar.
+    </div>
+{{/if}}
