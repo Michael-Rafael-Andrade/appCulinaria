@@ -1,48 +1,30 @@
-<!-- view/pesquisar.hbs -->
 <h1 class="mb-4">Pesquisar Receita</h1>
 
 <form method="POST" action="/pesquisar" class="mb-5">
     <div class="input-group">
-        <input type="text" class="form-control" name="termo" placeholder="Pesquisa por título da receita" value="{{termoBusca}}">
+        <input type="text" class="form-control" name="termo"
+            placeholder="Digite o nome de uma receita ou um ingrediente (ex: bolo, queijo, farinha)"
+            value="{{termoBusca}}">
         <button class="btn btn-primary" type="submit">
             <i class="bi bi-search"></i> Buscar
         </button>
     </div>
 </form>
 
+<hr>
+
 {{#if receitas}}
-    
-    <h3 class="mb-3">Resultados da Pesquisa ({{receitas.length}} encontradas)</h3>
 
-    <div class="d-flex flex-wrap gap-3">
-        {{#each receitas}}
-            <div class="card mb-3" style="width: 18rem;"> 
-                <div class="card-body">
-                    <h5 class="card-title">{{this.titulo}}</h5>
-                    <p class="card-text text-muted">
-                        <i class="bi bi-clock"></i> Tempo de preparo: {{this.tempoDePreparo}} minutos.
-                    </p>
-                </div>
-
-                <div class="card-footer d-flex justify-content-between">
-                    <a href="/receitas/{{this.id}}" class="btn btn-sm btn-info text-white">
-                        <i class="bi bi-eye"></i> Ver Detalhes
-                    </a>
-                    <a href="/receitas/{{this.id}}/alterar" class="btn btn-sm btn-warning">
-                        <i class="bi bi-pencil-square"></i> Alterar
-                    </a>
-                    <form method="POST" action="/receitas/{{this.id}}/excluir" style="display:inline;">
-                        <button type="submit" class="btn btn-sm btn-danger">
-                            <i class="bi bi-trash"></i> Excluir
-                        </button>
-                    </form>
-                </div>
-            </div>
-        {{/each}}
-    </div>
+<div class="list-group">
+    {{#each receitas}}
+    <a href="/receitas/{{this.id}}" class="list-group-item list-group-item-action">
+        {{this.titulo}}
+    </a>
+    {{/each}}
+</div>
 
 {{else if termoBusca}}
-    <div class="alert alert-warning" role="alert">
-        Nenhuma receita encontrada para o termo "{{termoBusca}}".
-    </div>
+<div class="alert alert-warning" role="alert">
+    Nenhuma receita encontrada para o termo **"{{termoBusca}}"**.
+</div>
 {{/if}}

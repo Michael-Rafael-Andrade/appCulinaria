@@ -36,7 +36,7 @@ const receitasController = {
     // Função para lidar com a submissão do formulário (POST - receitas/nova)
     criarReceita: (req, res) => {
         const {
-            titulo, 
+            titulo,
             ingredientes,
             modoDePreparo,
             tempoDePreparo
@@ -45,21 +45,21 @@ const receitasController = {
         let valido = true;
 
         // validação de obrigatoriedade 
-        if(!titulo || titulo.trim() === ''){
+        if (!titulo || titulo.trim() === '') {
             erros.titulo = 'O título da receita é obrigatório.';
             valido = false;
         }
-        if(!modoDePreparo || modoDePreparo.trim() === ''){
+        if (!modoDePreparo || modoDePreparo.trim() === '') {
             erros.modoDePreparo = 'O modo de preparo é obrigatório.';
             valido = false;
         }
         // validação de tempo mínimo
         const tempo = parseInt(tempoDePreparo);
-        if(isNaN(tempo) || tempo < 1){
+        if (isNaN(tempo) || tempo < 1) {
             erros.tempoDePreparo = 'O tempo de preparo deve ser um número e ter no mínimo 1 minuto.';
             valido = false;
         }
-        if(valido){ // Sim = cria o objeto e adiciona ao modelo
+        if (valido) { // Sim = cria o objeto e adiciona ao modelo
             const novaReceita = {
                 titulo,
                 ingredientes,
@@ -83,31 +83,31 @@ const receitasController = {
     // Função para exibir os detalhes de uma receita específica (GET /receitas/:id)
     detalheReceita: (req, res) => {
         // O ID é capturado dos parâmetros da rota (req.params.id)
-        const id = req.params.id; 
-        
+        const id = req.params.id;
+
         // Buscar a receita no Modelo
-        const receita = receitasModel.getReceitaById(id); 
+        const receita = receitasModel.getReceitaById(id);
 
         if (receita) {
             // Se encontrar, renderiza a view
-            res.render('detalheReceita', { 
+            res.render('detalheReceita', {
                 title: receita.titulo,
-                receita: receita 
+                receita: receita
             });
         } else {
             // Se não encontrar, exibe um erro
-            res.status(404).render('error', { 
+            res.status(404).render('error', {
                 message: 'Receita não encontrada',
-                error: { status: 404, stack: '' } 
+                error: { status: 404, stack: '' }
             });
         }
     },
 
     // Função para lidar com a exclusão de receita (POST /receitas/:id/excluir)
     excluirReceita: (req, res) => {
-        const id = req.params.id; 
-        
-        const sucesso = receitasModel.deleteReceita(id); 
+        const id = req.params.id;
+
+        const sucesso = receitasModel.deleteReceita(id);
 
         // Adicionar uma lógica de feedback (opcional, mas bom)
         if (sucesso) {
@@ -115,7 +115,7 @@ const receitasController = {
         } else {
             console.log(`Tentativa de excluir receita ID ${id} falhou (não encontrada).`);
         }
-        
+
         // Redireciona sempre para a página inicial
         res.redirect('/');
     },
@@ -123,7 +123,7 @@ const receitasController = {
     // Função para exibir o formulário de alteração de receita (GET /receitas/:id/alterar)
     alterarReceitaForm: (req, res) => {
         const id = req.params.id;
-        
+
         // Busca a receita no Modelo
         const receita = receitasModel.getReceitaById(id);
 
@@ -171,28 +171,28 @@ const receitasController = {
         if (valido) {
             // Se válido:
             const dadosAtualizados = req.body; // Usa req.body diretamente, pois a validação já tratou os tipos
-            
+
             // Chama o Modelo para atualizar
             const sucesso = receitasModel.updateReceita(id, dadosAtualizados);
-            
+
             // Redireciona para os detalhes da receita ou para a Home
             if (sucesso) {
                 res.redirect(`/receitas/${id}`); // Redireciona para os detalhes para ver a mudança
             } else {
                 // Se a receita não foi encontrada (raro, mas possível)
-                 res.status(404).send('Receita não encontrada para atualização.');
+                res.status(404).send('Receita não encontrada para atualização.');
             }
-            
+
         } else {
             // Se inválido, re-renderiza o formulário de alteração com os erros e os dados antigos
             // Nota: Passamos o objeto receita com os dados antigos e o ID
             res.render('alterarReceita', {
                 title: 'Alterar Receita',
-                erros: erros, 
+                erros: erros,
                 // Passamos req.body + ID para remontar o objeto receita para preenchimento
                 receita: {
                     id: id,
-                    ...req.body 
+                    ...req.body
                 }
             });
         }
@@ -205,7 +205,7 @@ const receitasController = {
         if (termoDeBusca) {
             // Processa a busca
             const resultados = receitasModel.searchReceitas(termoDeBusca);
-            
+
             // Renderiza a tela de pesquisa com os resultados
             res.render('pesquisar', {
                 title: 'Resultados da Pesquisa',
@@ -213,7 +213,7 @@ const receitasController = {
                 receitas: resultados, // Passa os resultados da busca
                 isPesquisar: true // Define o item do menu como ativo
             });
-            
+
         } else {
             // Se não há termo (GET inicial), apenas exibe o formulário vazio
             res.render('pesquisar', {
@@ -221,9 +221,8 @@ const receitasController = {
                 isPesquisar: true
             });
         }
-    },
 
-
+    }
 
 };
 
