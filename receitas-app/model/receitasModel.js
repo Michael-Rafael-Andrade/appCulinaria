@@ -18,3 +18,21 @@ let receitas = [
         tempoDePreparo: 20,
     }
 ];
+
+// Variável para controlar o próximo ID
+let nextId = receitas.length > 0 ? receitas[receitas.length - 1].id + 1 : 1;
+
+// Função -> acesso aos dados (serve como consulta)
+const receitasModel = {
+    // Retorna todas as receitas
+    getReceitas: () => {
+        return receitas;
+    },
+
+    // Retorna o ID para a próxima receita
+    getnextId: () => {
+        return nextId;
+    }
+};
+
+module.exports = receitasModel;
