@@ -16,6 +16,7 @@ router.get('/sobre', receitasController.sobre);
 // GET nova receita page.
 router.get('/receitas/nova', receitasController.novaReceitaForm);
 
-
+/* POST nova receita - (processa o formulário) */
+router.post('/receitas/nova', receitasController.criarReceita);
 
 module.exports = router;
