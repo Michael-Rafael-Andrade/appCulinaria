@@ -1,0 +1,44 @@
+<!-- view/alterarReceita.hbs -->
+<h1 class="mb-4">Alterar Receita: {{receita.titulo}}</h1>
+
+<form method="POST" action="/receitas/{{receita.id}}/alterar" class="needs-validation" novalidate>
+
+    <div class="mb-3">
+        <label for="titulo" class="form-label">Título da Receita:</label>
+        <input type="text" class="form-control" id="titulo" name="titulo" required value="{{receita.titulo}}">
+        {{#if erros.titulo}}
+        <div class="invalid-feedback d-block">{{erros.titulo}}</div>
+        {{/if}}
+    </div>
+
+    <div class="mb-3">
+        <label for="ingredientes" class="form-label">Ingredientes:</label>
+        <textarea class="form-control" id="ingredientes" name="ingredientes" rows="4" required>{{receita.ingredientes}}</textarea>
+        {{#if erros.ingredientes}}
+        <div class="invalid-feedback d-block">{{erros.ingredientes}}</div>
+        {{/if}}
+    </div>
+
+    <div class="mb-3">
+        <label for="modoDePreparo" class="form-label">Modo de Preparo:</label>
+        <textarea class="form-control" id="modoDePreparo" name="modoDePreparo" rows="6" required>{{receita.modoDePreparo}}</textarea>
+        {{#if erros.modoDePreparo}}
+        <div class="invalid-feedback d-block">{{erros.modoDePreparo}}</div>
+        {{/if}}
+    </div>
+
+    <div class="mb-4">
+        <label for="tempoDePreparo" class="form-label">Tempo de Preparo (em minutos):</label>
+        <input type="number" class="form-control" id="tempoDePreparo" name="tempoDePreparo" required min="1" value="{{receita.tempoDePreparo}}">
+        {{#if erros.tempoDePreparo}}
+        <div class="invalid-feedback d-block">{{erros.tempoDePreparo}}</div>
+        {{/if}}
+    </div>
+
+    <button type="submit" class="btn btn-success me-2">
+        <i class="bi bi-arrow-up-circle"></i> Salvar Alterações
+    </button>
+    <a href="/" class="btn btn-secondary">
+        <i class="bi bi-arrow-left"></i> Cancelar e Voltar
+    </a>
+</form>
