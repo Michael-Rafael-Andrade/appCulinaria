@@ -1,9 +1,15 @@
+// routes/index.js
+// importação
 var express = require('express');
 var router = express.Router();
 
+// importar o controoler
+const receitasController = require('../controller/receitasController');
+
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+// Direcionar para a função 'index' do Controller
+router.get('/', receitasController.index);
+
+
 
 module.exports = router;
