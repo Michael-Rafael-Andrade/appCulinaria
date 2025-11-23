@@ -22,4 +22,7 @@ router.post('/receitas/nova', receitasController.criarReceita);
 /* GET Detalhe da Receita (Consulta por ID) */
 router.get('/receitas/:id', receitasController.detalheReceita);
 
+// POST Exclusão de Receita 
+router.post('/receitas/:id/excluir', receitasController.excluirReceita);
+
 module.exports = router;

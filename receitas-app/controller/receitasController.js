@@ -101,7 +101,26 @@ const receitasController = {
                 error: { status: 404, stack: '' } 
             });
         }
-    }
+    },
+
+    // Função para lidar com a exclusão de receita (POST /receitas/:id/excluir)
+    excluirReceita: (req, res) => {
+        const id = req.params.id; 
+        
+        const sucesso = receitasModel.deleteReceita(id); 
+
+        // Adicionar uma lógica de feedback (opcional, mas bom)
+        if (sucesso) {
+            console.log(`Receita ID ${id} excluída com sucesso.`);
+        } else {
+            console.log(`Tentativa de excluir receita ID ${id} falhou (não encontrada).`);
+        }
+        
+        // Redireciona sempre para a página inicial
+        res.redirect('/');
+    },
+
+
 
 };
 

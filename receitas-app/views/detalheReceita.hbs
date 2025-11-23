@@ -29,9 +29,11 @@
             <a href="/receitas/{{receita.id}}/alterar" class="btn btn-warning me-2">
                 <i class="bi bi-pencil"></i> Alterar
             </a>
-            <a href="/receitas/{{receita.id}}/excluir" class="btn btn-danger me-2">
-                <i class="bi bi-x-circle"></i> Excluir
-            </a>
+            <form method="POST" action="/receitas/{{receita.id}}/excluir" style="display:inline;">
+                <button type="submit" class="btn btn-danger me-2">
+                    <i class="bi bi-trash"></i> Excluir
+                </button>
+            </form>
             <a href="/" class="btn btn-secondary">
                 <i class="bi bi-arrow-left"></i> Voltar para a Home
             </a>
