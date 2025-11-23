@@ -13,8 +13,17 @@ const receitasController = {
         res.render('index', {
             title: 'Sistema de Receitas',
             receitas: listaReceitas,
+            isHome: true // Variável para deixa o item Home active ou ativo no menu
         });
     },
+
+    // Função para a página "sobre"
+    sobre: (req, res) => {
+        res.render('sobre', {
+            title: 'Sobre a Aplicação',
+            isSobre: true // Variável para deixar o item 'sobre' ativo no menu
+        });
+    }
 
 };
 

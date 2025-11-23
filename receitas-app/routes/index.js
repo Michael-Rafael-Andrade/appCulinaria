@@ -10,6 +10,7 @@ const receitasController = require('../controller/receitasController');
 // Direcionar para a função 'index' do Controller
 router.get('/', receitasController.index);
 
-
+// GET sobre page. 
+router.get('/sobre', receitasController.sobre);
 
 module.exports = router;
