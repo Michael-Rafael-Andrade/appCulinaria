@@ -45,6 +45,14 @@ const receitasModel = {
         // Adiciona a receita à lista
         receitas.push(novaReceita);
     },
+
+    // Nova função: Retorna uma receita pelo seu ID
+    getReceitaById: (id) => {
+        // ID no array é um número, mas chega como string do Controller (via URL)
+        const receitaEncontrada = receitas.find(receita => receita.id === parseInt(id)); 
+        return receitaEncontrada;
+    },
+
 };
 
 module.exports = receitasModel;

@@ -79,7 +79,30 @@ const receitasController = {
 
         }
     },
-    
+
+    // Função para exibir os detalhes de uma receita específica (GET /receitas/:id)
+    detalheReceita: (req, res) => {
+        // O ID é capturado dos parâmetros da rota (req.params.id)
+        const id = req.params.id; 
+        
+        // Buscar a receita no Modelo
+        const receita = receitasModel.getReceitaById(id); 
+
+        if (receita) {
+            // Se encontrar, renderiza a view
+            res.render('detalheReceita', { 
+                title: receita.titulo,
+                receita: receita 
+            });
+        } else {
+            // Se não encontrar, exibe um erro
+            res.status(404).render('error', { 
+                message: 'Receita não encontrada',
+                error: { status: 404, stack: '' } 
+            });
+        }
+    }
+
 };
 
 module.exports = receitasController;

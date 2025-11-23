@@ -19,4 +19,7 @@ router.get('/receitas/nova', receitasController.novaReceitaForm);
 /* POST nova receita - (processa o formulário) */
 router.post('/receitas/nova', receitasController.criarReceita);
 
+/* GET Detalhe da Receita (Consulta por ID) */
+router.get('/receitas/:id', receitasController.detalheReceita);
+
 module.exports = router;
