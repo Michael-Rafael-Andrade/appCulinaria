@@ -120,6 +120,27 @@ const receitasController = {
         res.redirect('/');
     },
 
+    // Função para exibir o formulário de alteração de receita (GET /receitas/:id/alterar)
+    alterarReceitaForm: (req, res) => {
+        const id = req.params.id;
+        
+        // Busca a receita no Modelo
+        const receita = receitasModel.getReceitaById(id);
+
+        if (receita) {
+            // Renderiza a View, passando os dados da receita para preenchimento
+            res.render('alterarReceita', {
+                title: `Alterar: ${receita.titulo}`,
+                receita: receita // Passamos o objeto receita para a View
+            });
+        } else {
+            // Se não encontrou, retorna erro 404
+            res.status(404).render('error', {
+                message: 'Receita não encontrada para alteração.',
+                error: { status: 404, stack: '' }
+            });
+        }
+    },
 
 
 };

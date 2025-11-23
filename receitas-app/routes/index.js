@@ -25,4 +25,7 @@ router.get('/receitas/:id', receitasController.detalheReceita);
 // POST Exclusão de Receita 
 router.post('/receitas/:id/excluir', receitasController.excluirReceita);
 
+/* GET Alteração de Receita (Formulário preenchido) */
+router.get('/receitas/:id/alterar', receitasController.alterarReceitaForm);
+
 module.exports = router;
