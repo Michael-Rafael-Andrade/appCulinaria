@@ -3,13 +3,28 @@
   <head>
     <title>{{title}}</title>
     <link rel='stylesheet' href='/stylesheets/bootstrap/bootstrap.min.css' /> <!-- importação do css bootstrap offline -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- utilizar o meta para ajustar em diversas telas (Design Responsivo) -->
   </head>
   <body>
-    
+
     <div class="container mt-4">
       <nav class="nav nav-pills nav-fill justify-content-center mb-4">
+            <a class="nav-link {{#if isHome}}active{{/if}}" href="/">
+                <i class="bi bi-journal-text"></i> Sistema de Receitas
+            </a>
+            <a class="nav-link {{#if isSobre}}active{{/if}}" href="/sobre">
+                <i class="bi bi-info-circle-fill"></i> Sobre
+            </a>
+            <a class="nav-link {{#if isNova}}active{{/if}}" href="/receitas/nova">
+                <i class="bi bi-plus-circle-fill"></i> Nova Receita
+            </a>
+            <a class="nav-link {{#if isPesquisar}}active{{/if}}" href="/pesquisar">
+                <i class="bi bi-search"></i> Pesquisar Receita
+            </a>
+        </nav>
+      {{!-- <nav class="nav nav-pills nav-fill justify-content-center mb-4">
         <a class="nav-link {{#if isHome}}active{{/if}}" href="/">
           <i class="bi bi-house-door-fill"></i> Sistema de Receitas
         </a>
@@ -22,7 +37,7 @@
         <a class="nav-link {{#if isPesquisar}}active{{/if}}" href="/pesquisar">
           <i class="bi bi-search"></i> Pesquisar Receita
         </a>
-      </nav> 
+      </nav>  --}}
 
       {{{body}}}
     </div>

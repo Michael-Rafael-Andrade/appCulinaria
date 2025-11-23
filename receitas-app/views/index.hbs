@@ -9,19 +9,20 @@
                 <div class="card-body">
                     <h5 class="card-title">{{this.titulo}}</h5>
                     <p class="card-text text-muted">
+                        {{!-- <i class="bi bi-clock"></i> Tempo de preparo: {{this.tempoDePreparo}} minutos. --}}
                         Tempo de preparo: {{this.tempoDePreparo}} minutos.
                     </p>
                 </div>
 
                 <div class="card-footer d-flex justify-content-between">
                     <a href="/receitas/{{this.id}}" class="btn btn-sm btn-info text-white">
-                        Ver Detalhes
+                        <i class="bi bi-eye"></i> Ver Detalhes
                     </a>
                     <a href="/receitas/{{this.id}}/alterar" class="btn btn-sm btn-warning">
-                        Alterar
+                        <i class="bi bi-pencil-square"></i> Alterar
                     </a>
                     <a href="/receitas/{{this.id}}/excluir" class="btn btn-sm btn-danger">
-                        Excluir
+                        <i class="bi bi-trash"></i> Excluir
                     </a>
                 </div>
             </div>
