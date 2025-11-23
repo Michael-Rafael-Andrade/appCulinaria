@@ -53,6 +53,21 @@ const receitasModel = {
         return receitaEncontrada;
     },
 
+    // Deleta uma receita pelo ID
+    deleteReceita: (id) => {
+        const idParaDeletar = parseInt(id);
+        
+        // Antes de filtrar, verificamos se a receita existe
+        const indice = receitas.findIndex(receita => receita.id === idParaDeletar);
+        
+        if (indice !== -1) {
+            // Usa filter para criar um novo array sem a receita do ID especificado
+            receitas = receitas.filter(receita => receita.id !== idParaDeletar);
+            return true; // Sucesso na exclusão
+        }
+        return false; // Falha na exclusão (não encontrado)
+    },
+
 };
 
 module.exports = receitasModel;
