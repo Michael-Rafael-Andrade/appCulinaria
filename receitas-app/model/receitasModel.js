@@ -32,7 +32,19 @@ const receitasModel = {
     // Retorna o ID para a próxima receita
     getnextId: () => {
         return nextId;
-    }
+    },
+
+    // Adiciona uma nova receita
+    addReceita: (novaReceita) => {
+        // Gera o novo ID
+        novaReceita.id = nextId++;
+
+        // Garante que o tempo de preparo seja um número (pois chega como string pois vem do formulário)
+        novaReceita.tempoDePreparo = parseInt(novaReceita.tempoDePreparo);
+
+        // Adiciona a receita à lista
+        receitas.push(novaReceita);
+    },
 };
 
 module.exports = receitasModel;

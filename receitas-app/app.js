@@ -1,3 +1,5 @@
+// app.js  --- curso de pós graduação - Full-Stack - IFET - Michael
+// importação
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -15,7 +17,7 @@ app.set('view engine', 'hbs');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false })); // este comando vai ler o req.body dos formulários para validação <-> observação!
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
