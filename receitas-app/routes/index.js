@@ -37,4 +37,7 @@ router.get('/pesquisar', receitasController.pesquisarReceita);
 /* POST Processa a Pesquisa */
 router.post('/pesquisar', receitasController.pesquisarReceita);
 
+// /* POST Processa o Cadastro da Receita */
+// router.post('/nova-receita', receitasController.novaReceita);
+
 module.exports = router;

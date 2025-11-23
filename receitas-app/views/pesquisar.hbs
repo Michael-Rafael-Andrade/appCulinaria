@@ -3,7 +3,7 @@
 <form method="POST" action="/pesquisar" class="mb-5">
     <div class="input-group">
         <input type="text" class="form-control" name="termo"
-            placeholder="Digite o nome de uma receita ou um ingrediente (ex: bolo, queijo, farinha)"
+            placeholder="Pesquisa por título da receita"
             value="{{termoBusca}}">
         <button class="btn btn-primary" type="submit">
             <i class="bi bi-search"></i> Buscar
@@ -25,6 +25,6 @@
 
 {{else if termoBusca}}
 <div class="alert alert-warning" role="alert">
-    Nenhuma receita encontrada para o termo **"{{termoBusca}}"**.
+    Nenhuma receita encontrada para o termo "{{termoBusca}}".
 </div>
 {{/if}}

@@ -1,50 +1,51 @@
 <!-- views/novaReceita.hbs -->
-<h1 class="mb-4">Cadastrar Nova Receita</h1>
+<h1 class="mb-4">Nova Receita</h1>
 
-{{#if erros}}
-<div class="alert alert-danger" role="alert">
-    <strong>Oops!</strong> Por favor, corrija os erros abaixo:
-    <ul>
-        {{#each erros}}
-        <li>{{this}}</li>
-        {{/each}}
-    </ul>
-</div>
-{{/if}}
+<form method="POST" action="/nova-receita" class="needs-validation" novalidate>
 
-<form method="POST" action="/receitas/nova" class="needs-validation" novalidate>
     <div class="mb-3">
-        <label for="titulo" class="form-label">Título da Receita:</label>
-        <input type="text" class="form-control {{#if erros.titulo}}is-invalid{{/if}}" id="titulo" name="titulo" required value="{{oldData.titulo}}">
-        <div class="invalid-feedback">
-            {{erros.titulo}}
-        </div>
+        <label for="identificacao" class="form-label">Identificação da Receita</label>
+        <input type="text" class="form-control" id="identificacao" disabled placeholder="Será gerada automaticamente">
     </div>
 
     <div class="mb-3">
-        <label for="ingredientes" class="form-label">Ingredientes:</label>
-        <textarea class="form-control {{#if erros.ingredientes}}is-invalid{{/if}}" id="ingredientes" name="ingredientes" rows="4" required>{{oldData.ingredientes}}</textarea>
-        <div class="invalid-feedback">
-            {{erros.ingredientes}}
-        </div>
+        <label for="titulo" class="form-label">Título da Receita</label>
+        <input type="text" class="form-control" id="titulo" name="titulo" required value="{{oldData.titulo}}">
+        {{#if erros.titulo}}
+        <div class="invalid-feedback d-block">{{erros.titulo}}</div>
+        {{/if}}
     </div>
 
     <div class="mb-3">
-        <label for="modoDePreparo" class="form-label">Modo de Preparo:</label>
-        <textarea class="form-control {{#if erros.modoDePreparo}}is-invalid{{/if}}" id="modoDePreparo" name="modoDePreparo" rows="6" required>{{oldData.modoDePreparo}}</textarea>
-        <div class="invalid-feedback">
-            {{erros.modoDePreparo}}
-        </div>
+        <label for="ingredientes" class="form-label">Ingredientes</label>
+        <textarea class="form-control" id="ingredientes" name="ingredientes" rows="4" required>{{oldData.ingredientes}}</textarea>
+        <small class="form-text text-muted">Digite cada ingrediente em uma nova linha</small>
+        {{#if erros.ingredientes}}
+        <div class="invalid-feedback d-block">{{erros.ingredientes}}</div>
+        {{/if}}
+    </div>
+
+    <div class="mb-3">
+        <label for="modoDePreparo" class="form-label">Modo de Preparo</label>
+        <textarea class="form-control" id="modoDePreparo" name="modoDePreparo" rows="6" required>{{oldData.modoDePreparo}}</textarea>
+        <small class="form-text text-muted">Descreva passo a passo o modo de preparo</small>
+        {{#if erros.modoDePreparo}}
+        <div class="invalid-feedback d-block">{{erros.modoDePreparo}}</div>
+        {{/if}}
     </div>
 
     <div class="mb-4">
-        <label for="tempoDePreparo" class="form-label">Tempo de preparo (em minutos):</label>
-        <input type="number" class="form-control {{#if erros.tempoDePreparo}}is-invalid{{/if}}" id="tempoDePreparo" name="tempoDePreparo" required min="1" value="{{oldData.tempoDePreparo}}">
-        <div class="invalid-feedback">
-            {{erros.tempoDePreparo}}
-        </div>
+        <label for="tempoDePreparo" class="form-label">Tempo de Preparo (minutos)</label>
+        <input type="number" class="form-control" id="tempoDePreparo" name="tempoDePreparo" required min="1" value="{{oldData.tempoDePreparo}}">
+        {{#if erros.tempoDePreparo}}
+        <div class="invalid-feedback d-block">{{erros.tempoDePreparo}}</div>
+        {{/if}}
     </div>
 
-    <button type="submit" class="btn btn-primary me-2"> Cadastrar Receita </button>
-    <a href="/" class="btn btn-secondary"> Voltar para a Home </a>
+    <button type="submit" class="btn btn-success me-2">
+        <i class="bi bi-check-circle"></i> Salvar Receita
+    </button>
+    <a href="/" class="btn btn-secondary">
+        <i class="bi bi-arrow-left"></i> Voltar
+    </a>
 </form>
