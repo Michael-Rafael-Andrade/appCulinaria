@@ -23,8 +23,15 @@ const receitasController = {
             title: 'Sobre a Aplicação',
             isSobre: true // Variável para deixar o item 'sobre' ativo no menu
         });
-    }
+    },
 
+    // Função para exibir o formulário de criação de nova receita 
+    novaReceitaForm: (req, res) => {
+        res.render('novaReceita', {
+            title: 'Nova Receita',
+            isNova: true // ativa o item "Nova receita" no menu
+        });
+    },
 };
 
 module.exports = receitasController;

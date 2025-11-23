@@ -13,4 +13,9 @@ router.get('/', receitasController.index);
 // GET sobre page. 
 router.get('/sobre', receitasController.sobre);
 
+// GET nova receita page.
+router.get('/receitas/nova', receitasController.novaReceitaForm);
+
+
+
 module.exports = router;
