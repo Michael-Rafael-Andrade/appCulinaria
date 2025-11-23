@@ -1,0 +1,43 @@
+<!-- views/novaReceita.hbs -->
+<h1 class="mb-4">Cadastrar Nova Receita</h1>
+
+<form method="POST" action="/receitas/nova" class="needs-validation" novalidate>
+    <div class="mb-3">
+        <label for="titulo" class="form-label">Título da Receita:</label>
+        <input type="text" class="form-contro" id="titulo" name="titulo" required>
+        <div class="invalid-feedback">
+            O título é obrigatório.
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label for="ingredientes" class="form-label">Ingredientes:</label>
+        <textarea class="form-control" id="ingredientes" name="ingredientes" rows="4" required></textarea>
+        <div class="invalid-feedback">
+            A lista de ingredientes é obrigatória.
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label for="modoDePreparo" class="form-label">Modo de Preparo:</label>
+        <textarea class="form-control" id="modoDePreparo" name="modoDePreparo" rows="6" required></textarea>
+        <div class="invalid-feedback">
+            O modo de preparo é obrigatório.
+        </div>
+    </div>
+
+    <div class="mb-4">
+        <label for="tempoDePreparo" class="form-label">Tempo de preparo (em minutos):</label>
+        <input type="number" class="form-control" id="tempoDePreparo" name="tempoDePreparo" required min="1">
+        <div class="invalid-feedback">
+            O tempo de preparo é obrigatório e deve ser no mínimo 1 minuto.
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary me-2">
+        <i class="bi bi-save"></i> Cadastrar Receita
+    </button>
+    <a href="/" class="btn btn-secondary">
+        <i class="bi bi-arrow-left"></i> Voltar para a Home
+    </a>
+</form>
