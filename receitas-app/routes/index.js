@@ -31,4 +31,10 @@ router.get('/receitas/:id/alterar', receitasController.alterarReceitaForm);
 // POST Alteração de Receita (Salva as alterações) 
 router.post('/receitas/:id/alterar', receitasController.alterarReceita);
 
+/* GET Exibe o formulário de Pesquisa */
+router.get('/pesquisar', receitasController.pesquisarReceita);
+
+/* POST Processa a Pesquisa */
+router.post('/pesquisar', receitasController.pesquisarReceita);
+
 module.exports = router;

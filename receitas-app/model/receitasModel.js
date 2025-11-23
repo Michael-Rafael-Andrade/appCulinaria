@@ -90,7 +90,23 @@ const receitasModel = {
         return false; // Falha (receita não encontrada)
     },
 
-    
+    // Pesquisa receitas por palavra-chave no título ou ingredientes
+    searchReceitas: (keyword) => {
+        // Converte a palavra-chave para minúsculas para uma busca case-insensitive (não sensível a maiúsculas/minúsculas)
+        const termo = keyword.toLowerCase();
+        
+        return receitas.filter(receita => {
+            // Verifica se o título (em minúsculas) inclui o termo
+            const tituloMatch = receita.titulo.toLowerCase().includes(termo);
+            
+            // Verifica se os ingredientes (em minúsculas) incluem o termo
+            const ingredientesMatch = receita.ingredientes.toLowerCase().includes(termo);
+            
+            // Retorna a receita se houver correspondência em um dos campos
+            return tituloMatch || ingredientesMatch;
+        });
+    },
+
 
 };
 

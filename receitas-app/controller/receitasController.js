@@ -198,7 +198,30 @@ const receitasController = {
         }
     },
 
-    
+    // Função que exibe o formulário e trata a submissão da pesquisa (POST /pesquisar)
+    pesquisarReceita: (req, res) => {
+        const termoDeBusca = req.body.termo; // O campo do formulário será chamado 'termo'
+
+        if (termoDeBusca) {
+            // Processa a busca
+            const resultados = receitasModel.searchReceitas(termoDeBusca);
+            
+            // Renderiza a tela de pesquisa com os resultados
+            res.render('pesquisar', {
+                title: 'Resultados da Pesquisa',
+                termoBusca: termoDeBusca, // Passa o termo para que o campo fique preenchido
+                receitas: resultados, // Passa os resultados da busca
+                isPesquisar: true // Define o item do menu como ativo
+            });
+            
+        } else {
+            // Se não há termo (GET inicial), apenas exibe o formulário vazio
+            res.render('pesquisar', {
+                title: 'Pesquisar Receita',
+                isPesquisar: true
+            });
+        }
+    },
 
 
 
