@@ -16,7 +16,15 @@ let receitas = [
         ingredientes: "Polvilho doce, queijo ralado, ovos, óleo, leite, sal.",
         modoDePreparo: "Ferva o leite e óleo, escalde o polvilho. Adicione o ovo e o queijo. Asse até dourar.",
         tempoDePreparo: 20,
-    }
+    },
+    {
+        id: 3,
+        titulo: "Pão de Forma",
+        ingredientes: "Farinha de trigo, água morna, fermento biológico seco, açúcar, sal, azeite ou manteiga.",
+        modoDePreparo: "Misture os ingredientes secos. Adicione a água e o azeite/manteiga. Sove a massa e deixe crescer. Coloque na forma e asse até dourar.",
+        tempoDePreparo: 35,
+    },
+
 ];
 
 // Variável para controlar o próximo ID
