@@ -68,6 +68,30 @@ const receitasModel = {
         return false; // Falha na exclusão (não encontrado)
     },
 
+    // Atualiza uma receita existente
+    updateReceita: (id, dadosAtualizados) => {
+        const idParaAtualizar = parseInt(id);
+        
+        // Encontra o índice da receita no array usando findIndex
+        const indice = receitas.findIndex(receita => receita.id === idParaAtualizar);
+        
+        if (indice !== -1) {
+            // Garante que o tempo de preparo seja um número
+            dadosAtualizados.tempoDePreparo = parseInt(dadosAtualizados.tempoDePreparo);
+            
+            // Atualiza os atributos da receita existente no array
+            receitas[indice].titulo = dadosAtualizados.titulo;
+            receitas[indice].ingredientes = dadosAtualizados.ingredientes;
+            receitas[indice].modoDePreparo = dadosAtualizados.modoDePreparo;
+            receitas[indice].tempoDePreparo = dadosAtualizados.tempoDePreparo;
+            
+            return true; // Sucesso na atualização
+        }
+        return false; // Falha (receita não encontrada)
+    },
+
+    
+
 };
 
 module.exports = receitasModel;

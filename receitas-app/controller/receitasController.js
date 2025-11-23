@@ -142,6 +142,65 @@ const receitasController = {
         }
     },
 
+    // Função para salvar as alterações vindas da receita pelo POST
+    alterarReceita: (req, res) => {
+        const id = req.params.id;
+        const { titulo, ingredientes, modoDePreparo, tempoDePreparo } = req.body;
+        let erros = {};
+        let valido = true;
+
+        // VALIDAÇÃO (Reutiliza a lógica de validação do cadastro) ---
+        if (!titulo || titulo.trim() === '') {
+            erros.titulo = 'O título é obrigatório.';
+            valido = false;
+        }
+        if (!ingredientes || ingredientes.trim() === '') {
+            erros.ingredientes = 'A lista de ingredientes é obrigatória.';
+            valido = false;
+        }
+        if (!modoDePreparo || modoDePreparo.trim() === '') {
+            erros.modoDePreparo = 'O modo de preparo é obrigatório.';
+            valido = false;
+        }
+        const tempo = parseInt(tempoDePreparo);
+        if (isNaN(tempo) || tempo < 1) {
+            erros.tempoDePreparo = 'O tempo de preparo deve ser um número e ter no mínimo 1 minuto.';
+            valido = false;
+        }
+
+        if (valido) {
+            // Se válido:
+            const dadosAtualizados = req.body; // Usa req.body diretamente, pois a validação já tratou os tipos
+            
+            // Chama o Modelo para atualizar
+            const sucesso = receitasModel.updateReceita(id, dadosAtualizados);
+            
+            // Redireciona para os detalhes da receita ou para a Home
+            if (sucesso) {
+                res.redirect(`/receitas/${id}`); // Redireciona para os detalhes para ver a mudança
+            } else {
+                // Se a receita não foi encontrada (raro, mas possível)
+                 res.status(404).send('Receita não encontrada para atualização.');
+            }
+            
+        } else {
+            // Se inválido, re-renderiza o formulário de alteração com os erros e os dados antigos
+            // Nota: Passamos o objeto receita com os dados antigos e o ID
+            res.render('alterarReceita', {
+                title: 'Alterar Receita',
+                erros: erros, 
+                // Passamos req.body + ID para remontar o objeto receita para preenchimento
+                receita: {
+                    id: id,
+                    ...req.body 
+                }
+            });
+        }
+    },
+
+    
+
+
 
 };
 
